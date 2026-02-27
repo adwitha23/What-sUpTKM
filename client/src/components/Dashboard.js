@@ -73,6 +73,13 @@ const Dashboard = () => {
           >
             Community
           </button>
+          <button 
+            className="community-btn"
+            onClick={() => navigate('/participation')}
+            style={{marginLeft:'10px'}}
+          >
+            Participation
+          </button>
         </div>
 
         <div

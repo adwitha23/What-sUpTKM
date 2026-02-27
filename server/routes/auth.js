@@ -145,7 +145,9 @@ router.get('/profile', async (req, res) => {
     if (!token) return res.status(401).json({ msg: 'No token provided' });
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    const user = await User.findById(decoded.id).select('-otp -otpExpires -__v');
+    const user = await User.findById(decoded.id)
+      .select('-otp -otpExpires -__v')
+      .populate('registeredEvents');
     
     if (!user) return res.status(401).json({ msg: 'Invalid token' });
     

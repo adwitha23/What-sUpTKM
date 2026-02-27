@@ -211,6 +211,9 @@ const Community = () => {
           WHAT'SUPTKM
         </div>
         <div className="nav-title">Community</div>
+        <div className="nav-links">
+          <button className="community-btn" onClick={() => navigate('/participation')}>Participation</button>
+        </div>
         <div className="user-menu">
           <span className="username-display">{localStorage.getItem('username') || 'User'}</span>
           <span className="auth-link" style={{marginLeft:'10px'}} onClick={handleLogout}>Logout</span>

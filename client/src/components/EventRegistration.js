@@ -7,6 +7,7 @@ export default function EventRegistration() {
   const navigate = useNavigate();
   const [event, setEvent] = useState(null);
   const [user, setUser] = useState(null);
+  const [isRegistered, setIsRegistered] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -32,6 +33,10 @@ export default function EventRegistration() {
         if (!userRes.ok) throw new Error('User fetch failed');
         const userData = await userRes.json();
         setUser(userData);
+        // check registration status
+        if (evData.registeredStudents?.includes(userData._id)) {
+          setIsRegistered(true);
+        }
 
         setLoading(false);
       } catch (err) {
@@ -110,9 +115,15 @@ export default function EventRegistration() {
           </div>
         </div>
 
-        <button className="proceed-btn" onClick={handleRegister}>
-          Proceed to Register
-        </button>
+        {isRegistered ? (
+          <button className="proceed-btn" disabled>
+            Already Registered
+          </button>
+        ) : (
+          <button className="proceed-btn" onClick={handleRegister}>
+            Proceed to Register
+          </button>
+        )}
       </div>
     </div>
   );

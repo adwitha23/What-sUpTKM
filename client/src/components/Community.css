@@ -225,6 +225,7 @@
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .lostfound-card.lost {
@@ -260,6 +261,14 @@
 .lostfound-card.found .item-badge {
   background: rgba(74, 222, 128, 0.2);
   color: #4ade80;
+}
+.resolved-badge {
+  background: rgba(0, 255, 0, 0.2);
+  color: #22c55e;
+  margin-left: 8px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.75rem;
 }
 
 .item-content {
@@ -305,4 +314,133 @@
     flex-direction: column;
     gap: 5px;
   }
+}
+
+/* additional UI helpers */
+.create-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 20px 0;
+}
+.create-form input,
+.create-form textarea,
+.create-form select {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.2);
+  width: 100%;
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+}
+.create-form input::placeholder,
+.create-form textarea::placeholder {
+  color: #bbb;
+}
+.create-form .submit-btn {
+  width: auto;
+  padding: 10px 20px;
+}
+
+/* modal overlay */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+.modal-content {
+  background: #1f1f1f;
+  padding: 20px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  color: white;
+  position: relative;
+}
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.reactions button {
+  margin: 4px;
+  font-size: 1.2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.reactions button:hover {
+  transform: scale(1.2);
+}
+.active-emoji {
+  background: rgba(99,102,241,0.2);
+  border-radius: 6px;
+  padding: 2px 6px;
+}.existing-reactions span {
+  margin-right: 6px;
+}
+.replies {
+  margin-top: 20px;
+}
+.reply {
+  padding: 8px;
+  border-bottom: 1px solid #333;
+}
+.reply-form {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+.reply-form input {
+  flex: 1;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid #555;
+  background: #2a2a2a;
+  color: #fff;
+}
+.reply-form button {
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: none;
+  background: #6366f1;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* images */
+.post-thumb img {
+  width: 100%;
+  max-height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+.item-image {
+  width: 100%;
+  max-height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+.modal-image {
+  width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+  border-radius: 8px;
+  margin: 10px 0;
 }

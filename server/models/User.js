@@ -17,7 +17,9 @@ const UserSchema = new mongoose.Schema({
   isVerified: { type: Boolean, default: false },
   otp: { type: String },
   otpExpires: { type: Date },
-  registeredEvents: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Event' }]
+  registeredEvents: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Event' }],
+  discussionsPosted: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Discussion' }],
+  lostFoundPosts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'LostFound' }]
 }, { timestamps: true });
 
 module.exports = mongoose.model('User', UserSchema);

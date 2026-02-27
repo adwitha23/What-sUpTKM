@@ -92,6 +92,7 @@ router.post('/verify-otp', async (req, res) => {
       msg: "Verified successfully!",
       token,
       user: {
+        id: user._id,
         username: user.username,
         role: user.role
       }

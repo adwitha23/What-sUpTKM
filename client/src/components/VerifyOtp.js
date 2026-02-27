@@ -26,6 +26,9 @@ const VerifyOtp = () => {
         localStorage.setItem('token', res.data.token);
         localStorage.setItem('username', res.data.user.username);
         localStorage.setItem('role', res.data.user.role); // Save the role (student, admin, etc.)
+        if (res.data.user.id) {
+          localStorage.setItem('userId', res.data.user.id);
+        }
         
         // --- REDIRECTION LOGIC ---
         if (res.data.user.role === 'student') {

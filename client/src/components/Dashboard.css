@@ -1,0 +1,148 @@
+.dashboard-container {
+  min-height: 100vh;
+  background: #121212;
+  color: white;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 5%;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-weight: 800;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  background: linear-gradient(to right, #6366f1, #f472b6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.user-menu {
+  position: relative;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: absolute;
+  right: 0;
+  top: 40px;
+  background: #1f1f1f;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  width: 150px;
+}
+
+.dropdown-item {
+  padding: 10px 15px;
+  transition: 0.3s;
+}
+
+.dropdown-item:hover {
+  background: #6366f1;
+}
+
+/* Tinder Styling */
+.tinder-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 80px);
+  overflow: hidden;
+}
+
+.event-card {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  width: 350px;
+  height: 500px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+.card-info {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 20px;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+/* Add to Dashboard.css */
+
+.swipe-hints {
+  display: flex;
+  gap: 40px;
+  margin-top: 20px;
+  z-index: 10;
+}
+
+.hint-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  transition: 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hint-btn.dislike {
+  color: #ff4d4d;
+}
+
+.hint-btn.dislike:hover {
+  background: #ff4d4d;
+  color: white;
+}
+
+.hint-btn.like {
+  color: #00ff88;
+}
+
+.hint-btn.like:hover {
+  background: #00ff88;
+  color: white;
+}
+
+/* 🔥 FIX FOR TINDER STACKING */
+
+.card-stack {
+  position: relative;
+  width: 350px;
+  height: 500px;
+}
+
+.swipe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.event-card {
+  position: relative;
+  width: 350px;
+  height: 500px;
+  border-radius: 20px;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}

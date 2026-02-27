@@ -10,7 +10,7 @@ const Participation = () => {
 
   useEffect(() => {
     if (!token) {
-      navigate('/login');
+      navigate('/');
       return;
     }
 
@@ -24,7 +24,7 @@ const Participation = () => {
         setEvents(user.registeredEvents || []);
       } catch (err) {
         console.error(err);
-        navigate('/login');
+        navigate('/');
       }
     };
 
@@ -43,7 +43,7 @@ const Participation = () => {
           {showMenu && (
             <div className="dropdown">
               <div className="dropdown-item" onClick={() => navigate('/profile')}>Profile</div>
-              <div className="dropdown-item" onClick={() => { localStorage.clear(); navigate('/login'); }}>Logout</div>
+              <div className="dropdown-item" onClick={() => { localStorage.clear(); navigate('/'); }}>Logout</div>
             </div>
           )}
         </div>

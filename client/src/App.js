@@ -7,6 +7,7 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import VerifyOtp from './components/VerifyOtp';
 import Participation from './components/Participation';
+import Profile from './components/Profile';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/community" element={<Community />} />
         <Route path="/participation" element={<Participation />} />
+        <Route path="/profile" element={<Profile />} />
         <Route
           path="/event/:eventId/register"
           element={<EventRegistration />}

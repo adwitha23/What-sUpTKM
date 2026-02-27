@@ -16,7 +16,7 @@ const Dashboard = () => {
   // 🔐 Auth + Fetch Events
   useEffect(() => {
     if (!token || role !== 'student') {
-      navigate('/login');
+      navigate('/');
       return;
     }
 
@@ -43,7 +43,7 @@ const Dashboard = () => {
 
   const handleLogout = () => {
     localStorage.clear();
-    navigate('/login');
+    navigate('/');
   };
 
   // 🔥 Swipe Handler
@@ -100,7 +100,7 @@ const Dashboard = () => {
               </div>
               <div
                 className="dropdown-item"
-                onClick={handleLogout}
+                onClick={() => { localStorage.clear(); navigate('/'); }}
               >
                 Logout
               </div>

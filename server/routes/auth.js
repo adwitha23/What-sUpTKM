@@ -157,4 +157,41 @@ router.get('/profile', async (req, res) => {
   }
 });
 
+// Update profile fields
+router.patch('/profile', async (req, res) => {
+  try {
+    const token = req.header('Authorization')?.replace('Bearer ', '');
+    if (!token) return res.status(401).json({ msg: 'No token provided' });
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await User.findById(decoded.id);
+    if (!user) return res.status(401).json({ msg: 'Invalid token' });
+
+    const { name, username, year, branch } = req.body;
+    if (username && username !== user.username) {
+      const exists = await User.findOne({ username: username.toLowerCase() });
+      if (exists) {
+        return res.status(400).json({ msg: 'Username taken' });
+      }
+      user.username = username.toLowerCase();
+    }
+    if (name) user.name = name;
+    if (year !== undefined) user.year = year;
+    if (branch !== undefined) user.branch = branch;
+
+    await user.save();
+    res.json({
+      id: user._id,
+      username: user.username,
+      name: user.name,
+      email: user.email,
+      year: user.year,
+      branch: user.branch,
+      role: user.role
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ msg: 'Update failed' });
+  }
+});
+
 module.exports = router;

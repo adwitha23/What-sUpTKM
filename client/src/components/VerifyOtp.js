@@ -39,7 +39,7 @@ const VerifyOtp = () => {
           navigate('/management'); 
         }
       } else {
-        navigate('/login');
+        navigate('/');
       }
     } catch (err) {
       alert(err.response?.data?.msg || "Invalid or Expired OTP");

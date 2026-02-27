@@ -117,7 +117,7 @@ const Signup = () => {
         </form>
 
         <div className="auth-footer">
-            Already registered? <span className="auth-link" onClick={() => navigate('/login')}>Login</span>
+            Already registered? <span className="auth-link" onClick={() => navigate('/')}>Login</span>
         </div>
         </div>
     </div>

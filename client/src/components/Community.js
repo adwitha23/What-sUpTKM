@@ -23,13 +23,13 @@ const Community = () => {
 
   const handleLogout = () => {
     localStorage.clear();
-    navigate('/login');
+    navigate('/');
   };
 
   // fetch lists when component mounts
   useEffect(() => {
     const fetchLists = async () => {
-      if (!token) return navigate('/login');
+      if (!token) return navigate('/');
       try {
         const [dRes, lRes] = await Promise.all([
           fetch('http://localhost:5000/api/community/discussions', { headers: { Authorization: `Bearer ${token}` } }),
@@ -42,7 +42,7 @@ const Community = () => {
         setLostFound(lData);
       } catch (err) {
         console.error(err);
-        navigate('/login');
+        navigate('/');
       }
     };
     fetchLists();

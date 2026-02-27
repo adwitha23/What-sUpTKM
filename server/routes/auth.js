@@ -138,5 +138,20 @@ router.post('/login-request', async (req, res) => {
   }
 });
 
+router.get('/profile', async (req, res) => {
+  try {
+    const token = req.header('Authorization')?.replace('Bearer ', '');
+    if (!token) return res.status(401).json({ msg: 'No token provided' });
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await User.findById(decoded.id).select('-otp -otpExpires -__v');
+    
+    if (!user) return res.status(401).json({ msg: 'Invalid token' });
+    
+    res.json(user);
+  } catch (err) {
+    res.status(401).json({ msg: 'Please authenticate' });
+  }
+});
 
 module.exports = router;

@@ -1,61 +1,66 @@
-// server/routes/events.js
 const express = require('express');
 const router = express.Router();
 const Event = require('../models/Event');
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 
-// Helper Middleware to verify token and role
+// simple JWT middleware
 const authStudent = async (req, res, next) => {
   try {
-    const token = req.header('Authorization').replace('Bearer ', '');
+    const token = req.header('Authorization')?.replace('Bearer ', '');
+    if (!token) return res.status(401).json({ msg: 'No token' });
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const user = await User.findById(decoded.id);
-
-    if (!user || user.role !== 'student') {
-      throw new Error();
-    }
+    if (!user) return res.status(401).json({ msg: 'Invalid token' });
+    if (user.role !== 'student') return res.status(403).json({ msg: 'Forbidden' });
     req.user = user;
     next();
-  } catch (e) {
-    res.status(401).json({ msg: "Please authenticate as a student." });
+  } catch (err) {
+    res.status(401).json({ msg: 'Please authenticate' });
   }
 };
 
-// 1. GET all events for the Tinder Swipe
+// list all events
 router.get('/', authStudent, async (req, res) => {
   try {
-    // Logic: Only show events the student hasn't registered for yet
-    const events = await Event.find({
-      registeredStudents: { $nin: [req.user._id] }
-    });
+    const events = await Event.find({});
     res.json(events);
   } catch (err) {
-    res.status(500).json({ msg: "Server Error" });
+    res.status(500).json({ msg: 'Server error' });
   }
 });
 
-// 2. POST Register for an event (Swipe Right)
-router.post('/register/:id', authStudent, async (req, res) => {
+// get one event by id
+router.get('/:id', authStudent, async (req, res) => {
   try {
-    const event = await Event.findById(req.params.id);
-    if (!event) return res.status(404).json({ msg: "Event not found" });
+    const ev = await Event.findById(req.params.id);
+    if (!ev) return res.status(404).json({ msg: 'Event not found' });
+    res.json(ev);
+  } catch (err) {
+    res.status(500).json({ msg: 'Server error' });
+  }
+});
 
-    // Check if already registered
-    if (event.registeredStudents.includes(req.user._id)) {
-      return res.status(400).json({ msg: "Already registered" });
+// register current student for an event
+router.post('/:id/register', authStudent, async (req, res) => {
+  try {
+    const ev = await Event.findById(req.params.id);
+    if (!ev) return res.status(404).json({ msg: 'Event not found' });
+
+    // prevent duplicate
+    if (ev.registeredStudents.includes(req.user._id)) {
+      return res.status(400).json({ msg: 'Already registered' });
     }
 
-    // Add student to event and event to student profile
-    event.registeredStudents.push(req.user._id);
-    req.user.registeredEvents.push(event._id);
+    ev.registeredStudents.push(req.user._id);
+    await ev.save();
 
-    await event.save();
+    req.user.registeredEvents.push(ev._id);
     await req.user.save();
 
-    res.json({ msg: "Successfully registered for event!" });
+    res.json({ msg: 'Registered' });
   } catch (err) {
-    res.status(500).json({ msg: "Registration failed" });
+    res.status(500).json({ msg: 'Server error' });
   }
 });
 

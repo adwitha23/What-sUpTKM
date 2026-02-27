@@ -1,4 +1,4 @@
-// server/models/User.js
+// filepath: server/models/User.js
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
@@ -10,16 +10,14 @@ const UserSchema = new mongoose.Schema({
     enum: ['student', 'organizer', 'execom', 'admin'], 
     required: true 
   },
-  // Fields for Students & Execom
   year: { type: Number },
   branch: { type: String },
-  // Specific to Execom/Organizer
   clubCode: { type: String }, 
   execomRole: { type: String },
-  // Auth fields
   isVerified: { type: Boolean, default: false },
   otp: { type: String },
-  otpExpires: { type: Date }
+  otpExpires: { type: Date },
+  registeredEvents: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Event' }]
 }, { timestamps: true });
 
 module.exports = mongoose.model('User', UserSchema);

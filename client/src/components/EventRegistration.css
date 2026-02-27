@@ -1,0 +1,146 @@
+.registration-container {
+  display: flex;
+  gap: 50px;
+  max-width: 1000px;
+  margin: 60px auto;
+  padding: 30px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 15px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.registration-poster {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.registration-poster img {
+  width: 100%;
+  max-width: 350px;
+  height: 450px;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.registration-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+}
+
+.registration-details h1 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+.event-description {
+  font-size: 14px;
+  margin-bottom: 30px;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #fff;
+  font-size: 14px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 12px 15px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #333;
+  font-size: 15px;
+  font-family: inherit;
+}
+
+.input-field:disabled {
+  background: rgba(255, 255, 255, 0.8);
+  cursor: not-allowed;
+}
+
+.ticket-info {
+  margin: 35px 0;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.ticket-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ticket-price span {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.price {
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+
+.proceed-btn {
+  padding: 14px 28px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: 2px solid white;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+.proceed-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.loading, .error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-size: 18px;
+}
+
+@media (max-width: 768px) {
+  .registration-container {
+    flex-direction: column;
+    margin: 20px auto;
+    padding: 20px;
+  }
+
+  .registration-details h1 {
+    font-size: 24px;
+  }
+}

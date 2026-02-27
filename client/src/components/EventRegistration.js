@@ -1,102 +1,119 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import './EventRegistration.css';
 
-const EventRegistration = () => {
-  const { id } = useParams();
+export default function EventRegistration() {
+  const { eventId } = useParams();
   const navigate = useNavigate();
-  const token = localStorage.getItem('token');
-
   const [event, setEvent] = useState(null);
-  const [formData, setFormData] = useState({
-    phone: '',
-    department: '',
-    year: ''
-  });
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchEvent = async () => {
+    const fetchData = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:5000/api/events`,
-          { headers: { Authorization: `Bearer ${token}` } }
-        );
+        const token = localStorage.getItem('token');
+        if (!token) throw new Error('Not authenticated');
 
-        const selected = res.data.find(e => e._id === id);
-        setEvent(selected);
+        const evRes = await fetch(
+          `http://localhost:5000/api/events/${eventId}`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+        if (!evRes.ok) throw new Error('Event fetch failed');
+        const evData = await evRes.json();
+        setEvent(evData);
+
+        const userRes = await fetch('http://localhost:5000/api/auth/profile', {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (!userRes.ok) throw new Error('User fetch failed');
+        const userData = await userRes.json();
+        setUser(userData);
+
+        setLoading(false);
       } catch (err) {
         console.error(err);
+        setError(err.message);
+        setLoading(false);
       }
     };
 
-    fetchEvent();
-  }, [id, token]);
+    fetchData();
+  }, [eventId]);
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  const handleRegister = async () => {
     try {
-      await axios.post(
-        `http://localhost:5000/api/events/register/${id}`,
-        formData,
+      const token = localStorage.getItem('token');
+      const res = await fetch(
+        `http://localhost:5000/api/events/${eventId}/register`,
         {
-          headers: { Authorization: `Bearer ${token}` }
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
         }
       );
-
-      alert("Successfully Registered!");
-      navigate('/dashboard');
-
+      if (res.ok) navigate('/dashboard');
+      else throw new Error('Registration failed');
     } catch (err) {
-      alert(err.response?.data?.msg || "Registration failed");
+      console.error(err);
+      alert(err.message);
     }
   };
 
-  if (!event) return <h2>Loading...</h2>;
+  if (loading) return <div className="loading">Loading...</div>;
+  if (error) return <div className="error">Error: {error}</div>;
+  if (!event || !user) return <div className="error">Data not available</div>;
 
   return (
-    <div style={{ padding: "40px", color: "white" }}>
-      <h2>Register for {event.title}</h2>
-
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="phone"
-          placeholder="Phone Number"
-          onChange={handleChange}
-          required
+    <div className="registration-container">
+      <div className="registration-poster">
+        <img
+          src={event.image || 'https://via.placeholder.com/400x500'}
+          alt={event.title}
         />
-        <br /><br />
+      </div>
+      <div className="registration-details">
+        <h1>{event.title}</h1>
+        <p className="event-description">{event.description}</p>
 
-        <input
-          type="text"
-          name="department"
-          placeholder="Department"
-          onChange={handleChange}
-          required
-        />
-        <br /><br />
+        <div className="form-group">
+          <label>Full Name</label>
+          <input
+            type="text"
+            value={user.name || ''}
+            disabled
+            className="input-field"
+          />
+        </div>
 
-        <input
-          type="text"
-          name="year"
-          placeholder="Year"
-          onChange={handleChange}
-          required
-        />
-        <br /><br />
+        <div className="form-group">
+          <label>Email</label>
+          <input
+            type="email"
+            value={user.email || ''}
+            disabled
+            className="input-field"
+          />
+        </div>
 
-        <button type="submit">Confirm Registration</button>
-      </form>
+        <div className="ticket-info">
+          <div className="ticket-price">
+            <span>Ticket Price:</span>
+            <p className="price">
+              {event.ticketPrice === 0 ? 'FREE' : `₹${event.ticketPrice}`}
+            </p>
+          </div>
+        </div>
+
+        <button className="proceed-btn" onClick={handleRegister}>
+          Proceed to Register
+        </button>
+      </div>
     </div>
   );
-};
-
-export default EventRegistration;
+}

@@ -1,4 +1,3 @@
-// client/src/components/Dashboard.js
 import React, { useState, useEffect } from 'react';
 import TinderCard from 'react-tinder-card';
 import { useNavigate } from 'react-router-dom';
@@ -66,6 +65,15 @@ const Dashboard = () => {
     <div className="dashboard-container">
       <nav className="navbar">
         <div className="logo">WHAT'SUPTKM</div>
+
+        <div className="nav-links">
+          <button 
+            className="community-btn"
+            onClick={() => navigate('/community')}
+          >
+            Community
+          </button>
+        </div>
 
         <div
           className="user-menu"

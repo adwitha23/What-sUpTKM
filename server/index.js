@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(cors({
   origin: [
     "http://localhost:3000",
-    "https://vercel.com/adwithas-projects/what-s-up-tkm/7eZDweQiZzMUA2rfP5P7L983izGn"
+    "https://what-s-up-tkm.vercel.app/"
   ],
   credentials: true
 }));

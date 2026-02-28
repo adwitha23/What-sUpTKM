@@ -6,8 +6,13 @@ import Community from './components/Community';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import VerifyOtp from './components/VerifyOtp';
+import MyEvents from './components/MyEvents';
 import Participation from './components/Participation';
 import Profile from './components/Profile';
+import ExecomHub from './components/ExecomHub';
+import EventManagement from './components/EventManagement';
+import LiveEvents from './components/LiveEvents';
+import ClubStats from './components/ClubStats';
 
 function App() {
   return (
@@ -21,6 +26,11 @@ function App() {
         <Route path="/community" element={<Community />} />
         <Route path="/participation" element={<Participation />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/execomhub" element={<ExecomHub />} />
+        <Route path="/eventmanagement" element={<EventManagement />} />
+        <Route path="/liveevents" element={<LiveEvents />} />
+        <Route path="/myevents" element={<MyEvents />} />
+        <Route path="/clubstats" element={<ClubStats />} />
         <Route
           path="/event/:eventId/register"
           element={<EventRegistration />}

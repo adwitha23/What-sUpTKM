@@ -12,6 +12,9 @@ const sendEmail = async (to, otp) => {
       },
     });
 
+    console.log("USER:", process.env.EMAIL_USER);
+    console.log("PASS LENGTH:", process.env.EMAIL_PASS?.length);
+
     const mailOptions = {
       from: `"Campus Portal" <${process.env.EMAIL_USER}>`,
       to: to,

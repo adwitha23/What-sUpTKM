@@ -24,19 +24,22 @@ const VerifyOtp = () => {
       if (isLoginFlow) {
         // --- SAVING DATA FOR ROLE-BASED ACCESS ---
         localStorage.setItem('token', res.data.token);
-        localStorage.setItem('username', res.data.user.username);
-        localStorage.setItem('role', res.data.user.role); // Save the role (student, admin, etc.)
-        if (res.data.user.id) {
-          localStorage.setItem('userId', res.data.user.id);
+        // store full user object for organizer components
+        if (res.data.user) {
+          localStorage.setItem('user', JSON.stringify(res.data.user));
+          localStorage.setItem('username', res.data.user.username);
+          localStorage.setItem('role', res.data.user.role);
+          if (res.data.user.id || res.data.user._id) {
+            localStorage.setItem('userId', res.data.user.id || res.data.user._id);
+          }
         }
         
         // --- REDIRECTION LOGIC ---
         if (res.data.user.role === 'student') {
-          navigate('/home'); 
+          navigate('/home');
         } else {
-          // If they are an Organizer, Admin, or Execom, send them to management
-          alert(`Welcome ${res.data.user.role}! Redirecting to management panel...`);
-          navigate('/management'); 
+          // send organizers to Execom hub
+          navigate('/execomhub');
         }
       } else {
         navigate('/');

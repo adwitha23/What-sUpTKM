@@ -67,19 +67,39 @@ const Dashboard = () => {
         <div className="logo">WHAT'SUPTKM</div>
 
         <div className="nav-links">
-          <button 
-            className="community-btn"
-            onClick={() => navigate('/community')}
-          >
-            Community
-          </button>
-          <button 
-            className="community-btn"
-            onClick={() => navigate('/participation')}
-            style={{marginLeft:'10px'}}
-          >
-            Participation
-          </button>
+          {role === 'student' ? (
+            <>
+              <button 
+                className="community-btn"
+                onClick={() => navigate('/community')}
+              >
+                Community
+              </button>
+              <button 
+                className="community-btn"
+                onClick={() => navigate('/participation')}
+                style={{marginLeft:'10px'}}
+              >
+                Participation
+              </button>
+            </>
+          ) : (
+            <>
+              <button 
+                className="community-btn"
+                onClick={() => navigate('/community')}
+              >
+                Community
+              </button>
+              <button 
+                className="community-btn"
+                onClick={() => navigate('/myevents')}
+                style={{marginLeft:'10px'}}
+              >
+                Manage Events
+              </button>
+            </>
+          )}
         </div>
 
         <div
@@ -121,7 +141,9 @@ const Dashboard = () => {
             </h2>
           )}
 
-          {[...events].reverse().map((event) => (
+          {[...events].reverse().map((event) => {
+            const img = event.image && !event.image.startsWith('http') ? `http://localhost:5000${event.image}` : event.image;
+            return (
             <TinderCard
               className="swipe"
               key={event._id}
@@ -135,7 +157,7 @@ const Dashboard = () => {
               <div
                 className="event-card"
                 style={{
-                  backgroundImage: `url(${event.image || 'https://via.placeholder.com/400x600'})`
+                  backgroundImage: `url(${img || 'https://via.placeholder.com/400x600'})`
                 }}
               >
                 <div className="card-info">
@@ -149,7 +171,8 @@ const Dashboard = () => {
                 </div>
               </div>
             </TinderCard>
-          ))}
+          );
+          })}
 
         </div>
 

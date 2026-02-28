@@ -91,8 +91,6 @@ export default function EventManagement() {
         }
       };
 
-      let response;
-
       if (imageFile) {
         const data = new FormData();
 
@@ -106,13 +104,13 @@ export default function EventManagement() {
         data.append('image', imageFile);
 
         if (existingEvent) {
-          response = await axios.put(
+          await axios.put(
             `${API}/api/events/${existingEvent._id}`,
             data,
             config
           );
         } else {
-          response = await axios.post(
+          await axios.post(
             `${API}/api/events/create`,
             data,
             config
@@ -120,13 +118,13 @@ export default function EventManagement() {
         }
       } else {
         if (existingEvent) {
-          response = await axios.put(
+          await axios.put(
             `${API}/api/events/${existingEvent._id}`,
             base,
             config
           );
         } else {
-          response = await axios.post(
+          await axios.post(
             `${API}/api/events/create`,
             base,
             config

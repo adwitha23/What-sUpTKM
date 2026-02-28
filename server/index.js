@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(cors({
   origin: [
     "http://localhost:3000",
-    "https://what-s-up-tkm.vercel.app/"
+    "https://what-s-up-tkm.vercel.app"
   ],
   credentials: true
 }));

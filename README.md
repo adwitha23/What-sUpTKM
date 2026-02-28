@@ -22,8 +22,6 @@ We solve this by providing a "Swipe-to-Register" discovery engine that makes fin
 
 ![Screenshot 2](Screenshot%202026-02-28%20092941.png)
 
-![Screenshot 3](Screenshot%202026-02-28%20093530.png)
-
 ![Screenshot 4](Screenshot%202026-02-28%20094130.png)
 
 ![Screenshot 5](Screenshot%202026-02-28%20094759.png)

@@ -39,7 +39,7 @@ export default function EventManagement() {
         setImagePreview(img);
       }
     }
-  }, [existingEvent, API]);
+  }, [existingEvent]);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });

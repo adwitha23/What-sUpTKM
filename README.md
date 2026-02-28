@@ -50,7 +50,7 @@ Installation
 Bash
 
 # Clone the repository
-git clone https://github.com/adwitha2305/whatsup-tkm.git
+git clone https://github.com/adwitha23/whatsup-tkm.git
 
 # Install Backend dependencies
 cd server

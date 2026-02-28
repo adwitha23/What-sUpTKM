@@ -5,7 +5,13 @@ require('dotenv').config();
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: [
+    "http://localhost:3000",
+    "https://vercel.com/adwithas-projects/what-s-up-tkm/7eZDweQiZzMUA2rfP5P7L983izGn"
+  ],
+  credentials: true
+}));
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/events', require('./routes/events'));
 app.use('/api/classrooms', require('./routes/classroom'));

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import API from '../api';
 import { useNavigate } from 'react-router-dom';
 import './Dashboard.css';
 import './Auth.css';
@@ -13,7 +13,7 @@ export default function LiveEvents(){
       try{
         // fetch only events organised by this user
         const userId = localStorage.getItem('userId');
-        const res = await axios.get(`http://localhost:5000/api/events/club/${userId}`, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } });
+        const res = await API.get(`/events/club/${userId}`, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } });
         setEvents(res.data || []);
       }catch(e){ console.error(e); }
     };

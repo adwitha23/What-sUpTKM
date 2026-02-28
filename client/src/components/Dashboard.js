@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import TinderCard from 'react-tinder-card';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import API from '../api';
 import './Dashboard.css';
 
 const Dashboard = () => {
@@ -22,14 +22,11 @@ const Dashboard = () => {
 
     const fetchEvents = async () => {
       try {
-        const res = await axios.get(
-          'http://localhost:5000/api/events',
-          {
+        const res = await API.get('/events', {
             headers: {
               Authorization: `Bearer ${token}`
             }
-          }
-        );
+          });
 
         setEvents(res.data);
 

@@ -1,6 +1,6 @@
 // client/src/components/VerifyOtp.js
 import React, { useState } from 'react';
-import axios from 'axios';
+import API from '../api';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './Auth.css';
 
@@ -17,7 +17,7 @@ const VerifyOtp = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/verify-otp', { email, otp });
+      const res = await API.post('/auth/verify-otp', { email, otp });
       
       alert(res.data.msg);
 

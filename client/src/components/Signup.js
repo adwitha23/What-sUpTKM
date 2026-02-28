@@ -1,6 +1,6 @@
 // client/src/components/Signup.js
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import API from '../api';
 import { useNavigate } from 'react-router-dom'; // 1. Import useNavigate
 import './Auth.css';
 
@@ -25,7 +25,7 @@ const Signup = () => {
       if (formData.username.length >= 4) {
         setUsernameStatus('checking');
         try {
-          const res = await axios.get(`http://localhost:5000/api/auth/check-username/${formData.username}`);
+          const res = await API.get(`/auth/check-username/${formData.username}`);
           setUsernameStatus(res.data.available ? 'available' : 'taken');
         } catch (err) {
           console.error("Check failed");
@@ -48,7 +48,7 @@ const Signup = () => {
     
     setLoading(true); // Start loading
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/register', { ...formData, role });
+      const res = await API.post('/auth/register', { ...formData, role });
       
       alert(res.data.msg); // "OTP sent to your email"
       

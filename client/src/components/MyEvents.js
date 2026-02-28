@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import API from '../api';
 import './Dashboard.css';
 import './Auth.css';
 
@@ -13,7 +13,7 @@ export default function MyEvents() {
     const fetch = async () => {
       try {
         const userId = localStorage.getItem('userId');
-        const res = await axios.get(`http://localhost:5000/api/events/club/${userId}`, {
+        const res = await API.get(`/events/club/${userId}`, {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         });
         setEvents(res.data || []);
@@ -34,7 +34,7 @@ export default function MyEvents() {
   const handleDelete = async (id) => {
     if (!window.confirm('Delete this event?')) return;
     try {
-      await axios.delete(`http://localhost:5000/api/events/${id}`, {
+      await API.delete(`/events/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       setEvents((prev) => prev.filter(e => e._id !== id));

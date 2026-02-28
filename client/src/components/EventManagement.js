@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import API from '../api';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './Auth.css';
 
@@ -8,7 +8,7 @@ export default function EventManagement() {
   const location = useLocation();
   const existingEvent = location.state?.event;
 
-  const API = process.env.REACT_APP_API_URL;
+
 
   const [form, setForm] = useState({
     title: '',
@@ -35,7 +35,7 @@ export default function EventManagement() {
       if (existingEvent.image) {
         const img = existingEvent.image.startsWith('http')
           ? existingEvent.image
-          : `${API}${existingEvent.image}`;
+          : `${process.env.REACT_APP_API_URL || 'http://localhost:5000'}${existingEvent.image}`;
         setImagePreview(img);
       }
     }
@@ -61,7 +61,7 @@ export default function EventManagement() {
 
   const checkRooms = async () => {
     try {
-      const res = await axios.get(`${API}/api/classrooms/check`, {
+      const res = await API.get('/classrooms/check', {
         params: {
           dept: form.department,
           date: form.date,
@@ -104,28 +104,28 @@ export default function EventManagement() {
         data.append('image', imageFile);
 
         if (existingEvent) {
-          await axios.put(
-            `${API}/api/events/${existingEvent._id}`,
+          await API.put(
+            `/events/${existingEvent._id}`,
             data,
             config
           );
         } else {
-          await axios.post(
-            `${API}/api/events/create`,
+          await API.post(
+            `/events/create`,
             data,
             config
           );
         }
       } else {
         if (existingEvent) {
-          await axios.put(
-            `${API}/api/events/${existingEvent._id}`,
+          await API.put(
+            `/events/${existingEvent._id}`,
             base,
             config
           );
         } else {
-          await axios.post(
-            `${API}/api/events/create`,
+          await API.post(
+            `/events/create`,
             base,
             config
           );

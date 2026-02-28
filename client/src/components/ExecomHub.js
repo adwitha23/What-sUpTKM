@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import API from '../api';
 import './Auth.css';
 import './Dashboard.css';
 
@@ -16,7 +16,7 @@ const ExecomHub = () => {
     const fetch = async () => {
       if (!user?._id) return setLoading(false);
       try{
-        const res = await axios.get(`http://localhost:5000/api/events/club/${user._id}`, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } });
+        const res = await API.get(`/events/club/${user._id}`, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } });
         const today = new Date().toISOString().split('T')[0];
         const list = (res.data || []).filter(ev => (ev.date || '') >= today);
         setUpcomingEvents(list);

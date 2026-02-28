@@ -1,6 +1,6 @@
 // client/src/components/Login.js
 import React, { useState } from 'react';
-import axios from 'axios';
+import API from '../api';
 import { useNavigate } from 'react-router-dom';
 import './Auth.css';
 
@@ -18,7 +18,7 @@ const Login = () => {
     setLoading(true);
     try {
       // This route will check credentials and send a fresh OTP
-      const res = await axios.post('http://localhost:5000/api/auth/login-request', formData);
+      const res = await API.post('/auth/login-request', formData);
       alert(res.data.msg);
       // Move to verify screen, passing email so we can verify the login OTP
       navigate('/verify', { state: { email: formData.email, isLoginFlow: true } });

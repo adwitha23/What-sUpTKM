@@ -5,7 +5,7 @@ import './Profile.css';
 const Profile = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
-  const role = localStorage.getItem('role');
+  const userRole = localStorage.getItem('role');
   const [showMenu, setShowMenu] = useState(false);
   const [user, setUser] = useState({
     name: '',
@@ -129,7 +129,7 @@ const Profile = () => {
           <label>Email</label>
           <input name="email" value={user.email} disabled />
         </div>
-        {role === 'student' && (
+        {userRole === 'student' && (
           <>
             <div className="form-group">
               <label>Year</label>

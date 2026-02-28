@@ -41,10 +41,6 @@ const Dashboard = () => {
     fetchEvents();
   }, [token, role, navigate]);
 
-  const handleLogout = () => {
-    localStorage.clear();
-    navigate('/');
-  };
 
   // 🔥 Swipe Handler
   const swiped = (direction, eventId) => {

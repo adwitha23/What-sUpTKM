@@ -19,8 +19,6 @@ The Solution
 We solve this by providing a "Swipe-to-Register" discovery engine that makes finding events fun. We've also integrated a robust Community Pillar (Lost & Found,  Discussions) and a Management Suite for Club Organizers to book classrooms and track live event analytics.
 # Screenshots
 
-![Screenshot 1](Screenshot%202026-02-27%20200319.png)
-
 ![Screenshot 2](Screenshot%202026-02-28%20092941.png)
 
 ![Screenshot 3](Screenshot%202026-02-28%20093530.png)

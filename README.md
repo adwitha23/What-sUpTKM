@@ -150,8 +150,6 @@ Human Contributions:
 
   Implementation of the Tinder Swipe logic.
 
-  Custom Business logic for Ticket Reselling and Club Code verification.
-
 Team Contributions
 [Member 1]:Developed the JWT-based authentication system with role-assignment, the custom "Obsidian" dark-theme UI architecture, and the Tinder-style "Swipe-to-Register" discovery interface using the react-tinder-card library.Tinder Swipe UI implementation, UI/UX design (Obsidian Theme),lost and found and Community page .
 

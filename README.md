@@ -1,4 +1,4 @@
-What-sUp TKM 🎯
+What'sUp TKM 🎯
 
 Basic Details<br><br>
 Team Name: 404 Jeevitham<br><br>
@@ -8,9 +8,6 @@ Team Members
 
   Member 2: Neeta A Suresh - TKM College of Engineering
 
-Hosted Project Link
-
-[Link to your Vercel/Netlify/Heroku deployment]
 Project Description
 
 Whatsup TKM is a high-engagement campus event portal that replaces traditional list-based discovery with a Tinder-style swipe interface. It centralizes event registration, ticket reselling, and campus-wide community discussions into a single "Obsidian" themed web app.
@@ -147,7 +144,7 @@ Human Contributions:
 Team Contributions
 [Member 1]:Developed the JWT-based authentication system with role-assignment, the custom "Obsidian" dark-theme UI architecture, and the Tinder-style "Swipe-to-Register" discovery interface using the react-tinder-card library.Tinder Swipe UI implementation, UI/UX design (Obsidian Theme),lost and found and Community page .
 
-[Member 2]: Built the smart classroom booking system with conflict detection,Event Organisation section and  the Live Ops analytics dashboard,.
+[Member 2]: Built the smart classroom booking system with conflict detection,Event Organisation section and  the Live Ops analytics dashboard.
 
 License
 

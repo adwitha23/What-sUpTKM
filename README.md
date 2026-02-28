@@ -17,6 +17,27 @@ Campus engagement is currently fragmented across cluttered WhatsApp groups and o
 The Solution
 
 We solve this by providing a "Swipe-to-Register" discovery engine that makes finding events fun. We've also integrated a robust Community Pillar (Lost & Found,  Discussions) and a Management Suite for Club Organizers to book classrooms and track live event analytics.
+
+## Screenshots
+
+### Screenshot 1
+![Screenshot](Screenshot 2026-02-27 200319.png)
+
+### Screenshot 2
+![Screenshot](Screenshot 2026-02-28 092941.png)
+
+### Screenshot 3
+![Screenshot](Screenshot 2026-02-28 093530.png)
+
+### Screenshot 4
+![Screenshot](Screenshot 2026-02-28 094130.png)
+
+### Screenshot 5
+![Screenshot](Screenshot 2026-02-28 094759.png)
+
+### Screenshot 6
+![Screenshot](Screenshot 2026-02-28 094905.png)
+
 Technical Details
 Technologies/Components Used
 

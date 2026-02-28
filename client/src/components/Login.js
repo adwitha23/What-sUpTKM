@@ -18,7 +18,7 @@ const Login = () => {
     setLoading(true);
     try {
       // This route will check credentials and send a fresh OTP
-      const res = await API.post('/auth/login-request', formData);
+      const res = await API.post('/api/auth/login-request', formData);
       alert(res.data.msg);
       // Move to verify screen, passing email so we can verify the login OTP
       navigate('/verify', { state: { email: formData.email, isLoginFlow: true } });
